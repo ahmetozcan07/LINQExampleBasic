@@ -42,7 +42,7 @@ namespace LinqExampleApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Filtered(decimal? minPrice, string? sortOrder)
+        public IActionResult Filtered(decimal? minPrice, string? sortOrder, string? category)
         {
             // All products can be seen at first
             var query = _context.Products.AsQueryable();
@@ -59,6 +59,24 @@ namespace LinqExampleApp.Controllers
                 query = query.OrderByDescending(p => p.Price);
             else
                 query = query.OrderBy(p => p.Price);
+
+            // filter category
+            if (!string.IsNullOrEmpty(category))
+            {
+                query = query.Where(p => p.Category == category);
+            }
+
+
+            // Creating category list 
+            var categories = _context.Products
+                            .Select(p => p.Category)
+                            .Distinct()
+                            .OrderBy(c => c)
+                            .ToList();
+
+            // sending category list to view with ViewBag
+            ViewBag.Categories = categories;
+
 
             var products = query.ToList();
             return View(products);
