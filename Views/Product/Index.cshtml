@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LinqExampleApp.Models.Product>
+
+<h2>Products</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Category</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Product</a>
+<a asp-action="Filtered" class="btn btn-primary">Filter Products</a>

@@ -1,0 +1,20 @@
+﻿@model LinqExampleApp.Models.Product
+
+<h2>Create New Product</h2>
+
+<form asp-action="Create" method="post" class="mt-3">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Category" class="form-label"></label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
